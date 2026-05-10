@@ -1,11 +1,11 @@
-/* #27ae60 */  verde claro
+/* #07B599 */  verde claro
 
 
 
 /* Configuración General */
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #27ae60;
+    background-color: #07B599;
     margin: 0;
     padding: 20px;
     
@@ -18,7 +18,7 @@ html, body {
 }
 
 .btn-marca {
-    background-color: #27ae60;
+    background-color: #07B599;
     color: black;
     border: solid 2px black;
     padding: 12px 24px;
@@ -31,7 +31,7 @@ html, body {
 }
 
 .btn-marca:hover {
-    color: #27ae60;
+    color: #07B599;
     background-color: black;
     transform: translateY(-4px);
 }
@@ -73,7 +73,7 @@ html, body {
 }
 
 .producto-precio {
-    color: #27ae60;
+    color: #07B599;
     font-weight: bold;
     font-size: 1.1rem;
 }
@@ -139,11 +139,11 @@ input[type="number"]:focus {
     margin-bottom: 20px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #27ae60;
+    color: #07B599;
 }
 
 .btn-pdf {
-    background-color: #27ae60;
+    background-color: #07B599;
     color: black;
     border: solid 2px black;
     padding: 12px 24px;
@@ -155,7 +155,7 @@ input[type="number"]:focus {
 }
 
 .btn-pdf:hover {
-    color: #27ae60;
+    color: #07B599;
     background-color: black;
     transform: translateY(-4px);
 }
