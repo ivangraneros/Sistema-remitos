@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pedidos Mayorista</title>
+    <!-- css -->
+    <link rel="stylesheet" href="/src/css/style.css">
+    <!-- js -->
+    <script type="module" src="/src/js/script.js" defer></script>
+
+    <!-- jsPDF  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <!-- <script type="module" src="/src/js/cargador.js"></script> -->
+</head>
+
+
+<body>
+
+    <div class="container">
+        <h1 class="titulo">Petakita Pet Shop</h1>
+        <input type="text" id="nombreCliente" placeholder="Nombre del Local / Cliente">
+        <input type="text" id="direccionCliente" placeholder="Dirección del Local / Cliente">
+        <input type="text" id="input-buscador" placeholder="Buscar producto por nombre..." oninput="window.ejecutarBusqueda()">
+    </div>
+
+    <div class="marcas-nav">
+        <button id="btn-purina" class="btn-marca" disabled onclick="window.mostrarProductos('Purina')">
+        <div id="spinner" class="custom-loader"></div> 
+        <span id="btn-text">Cargando Stock...</span>
+        </button>
+    </div>
+
+    <div>
+        <button onclick="cerrarLista()" id="btn-cerrar">Cerrar lista</button>
+    </div>
+
+    <div id="lista-productos"></div>
+    
+        <aside class="carrito-container">
+            <h3>🛒 Resumen de Pedido</h3>
+            <div id="resumen-pedido">El carrito está vacío</div>
+            <div class="total-box">
+                <span>TOTAL:</span>
+                <span id="total-final">$0</span>
+            </div>
+            <button id="btnGenerar" class="btn-pdf" onclick="generarPDF()">📄 Crear Factura PDF</button>
+        </aside>
+    </div>
+    
+</body>
+</html>

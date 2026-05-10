@@ -1,0 +1,234 @@
+/* #27ae60 */  verde claro
+
+
+
+/* Configuración General */
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #27ae60;
+    margin: 0;
+    padding: 20px;
+    
+}
+
+.marcas-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btn-marca {
+    background-color: #27ae60;
+    color: black;
+    border: solid 2px black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgb(42, 39, 39);
+    transition: transform 0.4s, background 0.5s;
+    margin: 20px;
+}
+
+.btn-marca:hover {
+    color: #27ae60;
+    background-color: black;
+    transform: translateY(-4px);
+}
+
+/* Contenedor de la Lista de Productos */
+#lista-productos {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Cada fila de producto */
+.producto-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.producto-row:last-child {
+    border-bottom: none;
+}
+
+.producto-info {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.producto-nombre {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.producto-precio {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Input de cantidad */
+input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+input[type="number"]:focus {
+    border-color: #002d72;
+    outline: none;
+}
+
+.titulo {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 2.3rem;
+}
+
+#nombreCliente, #direccionCliente, #input-buscador {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.container {
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Resumen del Pedido (Carrito) */
+
+.carrito-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 30px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+#resumen-pedido {
+    list-style: circle;
+    padding: 0;
+    margin: 0;
+}
+
+.total-box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.btn-pdf {
+    background-color: #27ae60;
+    color: black;
+    border: solid 2px black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgb(42, 39, 39);
+    transition: transform 0.4s, background 0.5s;
+}
+
+.btn-pdf:hover {
+    color: #27ae60;
+    background-color: black;
+    transform: translateY(-4px);
+}
+
+
+/* From Uiverse.io by cohencoo */ 
+.custom-loader {
+  width: 70px;
+  height: 70px;
+  background: #000000;
+  border-radius: 50px;
+  -webkit-mask: radial-gradient(circle 31px at 50% calc(100% + 13px),#000 95%,#0000) top 4px left 50%,
+    radial-gradient(circle 31px,#000 95%,#0000) center,
+    radial-gradient(circle 31px at 50% -13px,#000 95%,#0000) bottom 4px left 50%,
+    linear-gradient(#000 0 0);
+  mask: radial-gradient(circle 31px at 50% calc(100% + 13px),#000 95%,#0000) top 4px left 50%,
+    radial-gradient(circle 31px,#000 95%,#0000) center,
+    radial-gradient(circle 31px at 50% -13px,#000 95%,#0000) bottom 4px left 50%,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: cu10 1.5s infinite;
+}
+
+@keyframes cu10 {
+  0% {
+    -webkit-mask-size: 0    18px,0    18px,0    18px,auto
+  }
+
+  16.67% {
+    -webkit-mask-size: 100% 18px,0    18px,0    18px,auto
+  }
+
+  33.33% {
+    -webkit-mask-size: 100% 18px,100% 18px,0    18px,auto
+  }
+
+  50% {
+    -webkit-mask-size: 100% 18px,100% 18px,100% 18px,auto
+  }
+
+  66.67% {
+    -webkit-mask-size: 0    18px,100% 18px,100% 18px,auto
+  }
+
+  83.33% {
+    -webkit-mask-size: 0    18px,0    18px,100% 18px,auto
+  }
+
+  100% {
+    -webkit-mask-size: 0    18px,0    18px,0    18px,auto
+  }
+}
+
+
+/* button cerrar */
+
+#btn-cerrar {
+    background-color: #f0f0f0;
+    color: #333;
+    border: solid 2px #ccc;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.4s, background 0.5s;
+    margin: 20px auto;
+    display: block;
+}
+
+#btn-cerrar:hover {
+    background-color: #ccc;
+    transform: translateY(-4px);
+}
