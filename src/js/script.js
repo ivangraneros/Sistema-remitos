@@ -1,4 +1,6 @@
-import { db, collection, getDocs } from '../config/firebase-config.js';
+// import "./cargador.js";
+import { db } from "../config/firebase-config.js";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 
 window.productosDB = []; 
@@ -6,7 +8,7 @@ window.pedidoActual = {};
 
 async function cargarProductos() {
     try {
-        const querySnapshot = await getDocs(collection(db, "productos"));
+        const querySnapshot = await getDocs(collection(db, "catalogo"));
         window.productosDB = querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
@@ -39,16 +41,16 @@ function activarBotones() {
     }
 }
 
-window.mostrarProductos = function(marca) {
+window.mostrarProductos = function(seccion) {
 
-    window.marcaActual = marca;
+    window.seccionActual = seccion;
     
     const buscador = document.getElementById('input-buscador');
     if (buscador) buscador.value = ""; 
 
     
     const iniciales = window.productosDB.filter(p => 
-        p.marca && p.marca.toLowerCase() === marca.toLowerCase()
+        p.seccion && p.seccion.toLowerCase() === seccion.toLowerCase()
     );
     
     renderizarLista(iniciales);
@@ -74,7 +76,7 @@ function renderizarLista(lista) {
 }
 
 window.ejecutarBusqueda = function() {
-    if (!window.marcaActual) return;
+    if (!window.seccionActual) return;
 
     const buscador = document.getElementById('input-buscador');
     const fraseBuscador = buscador.value.toLowerCase().trim();
@@ -82,11 +84,11 @@ window.ejecutarBusqueda = function() {
     const palabras = fraseBuscador.split("");
 
     const resultados = window.productosDB.filter(p => {
-        const coincideMarca = p.marca && p.marca.toLowerCase() === window.marcaActual.toLowerCase();
+        const coincideSeccion = p.seccion && p.seccion.toLowerCase() === window.seccionActual.toLowerCase();
 
         const nombreProducto = p.nombre.toLowerCase();
         const coincideNombre = palabras.every(palabra => nombreProducto.includes(palabra));
-        return coincideMarca && coincideNombre;
+        return coincideSeccion && coincideNombre;
     });
 
     
@@ -207,4 +209,3 @@ window.generarPDF = function() {
 }
 
 cargarProductos();
-

@@ -1,5 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -12,11 +12,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
 
-
-
-export { db, collection, getDocs, addDoc };
+export const db = getFirestore(app);

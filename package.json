@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "firebase": "^12.13.0",
+    "firebase-admin": "^13.10.0"
   }
 }
