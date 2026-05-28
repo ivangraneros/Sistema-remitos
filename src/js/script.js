@@ -176,7 +176,7 @@ window.generarPDF = function() {
     
 
     doc.setFontSize(10);
-    doc.text("MES / DIA / AÑO", 140, 30);
+    doc.text("DIA / MES / AÑO", 140, 30);
     doc.text(`${new Date().toLocaleDateString()}`, 140, 35);
 
     // --- DATOS DEL CLIENTE ---
