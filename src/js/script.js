@@ -26,18 +26,17 @@ async function cargarProductos() {
 
 
 function activarBotones() {
-    const btn = document.getElementById('btn-purina');
+    const btn = document.getElementById('btn-marcas');
     const txt = document.getElementById('btn-text');
-    const spinner = document.getElementById('spinner');
+    ;
 
     if (btn) {
         btn.disabled = false;
-        if (txt) txt.innerText = "VER LÍNEA PURINA";
-        if (spinner) spinner.style.display = 'none';
+        if (txt) txt.innerText = "cargar productos";
     } else {
         
         console.warn("Buscando botón...");
-        setTimeout(activarBotones, 500);
+        setTimeout(activarBotones, 300);
     }
 }
 
@@ -138,7 +137,7 @@ window.generarPDF = function() {
     const inputDireccion = document.getElementById('direccionCliente');
     const direccionCliente = inputDireccion ? inputDireccion.value.trim() : "";
     const direccionTexto = direccionCliente !== "" ? direccionCliente.toUpperCase() : "Sin dirección";
-
+    const imgLogo = document.getElementById("logo")
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -167,14 +166,17 @@ window.generarPDF = function() {
 // --- ENCABEZADO ESTILO REMITO ---
     doc.setFont("helvetica", "bold");
     doc.setFontSize(22);
-    doc.text("Petakita", 20, 20); 
+    if (imgLogo) {
+        const imgWidth = 30;
+        const imgHeight = (imgLogo.naturalHeight / imgLogo.naturalWidth) * imgWidth;
+        doc.addImage(imgLogo, 'JPEG', 15, 10, imgWidth, imgHeight);
+    } 
     doc.setFontSize(9);
-    doc.text("COMP. Nro°: 00007", 140, 15); 
     doc.text("DOCUMENTO NO VALIDO COMO FACTURA", 140, 20); 
     
 
     doc.setFontSize(10);
-    doc.text("DIA / MES / AÑO", 140, 30);
+    doc.text("MES / DIA / AÑO", 140, 30);
     doc.text(`${new Date().toLocaleDateString()}`, 140, 35);
 
     // --- DATOS DEL CLIENTE ---
@@ -186,7 +188,7 @@ window.generarPDF = function() {
 
     // tabla con autoTable 
     doc.autoTable({
-        startY: 75,
+        startY: 85,
         head: [['CANTIDAD', 'DESCRIPCION', 'PRECIO C/U', 'IMPORTE']],
         body: datosTabla,
         theme: 'grid',

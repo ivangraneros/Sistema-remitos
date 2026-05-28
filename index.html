@@ -19,6 +19,7 @@
 <body>
 
     <div class="container">
+        <img src="./src/media/logo-petakita.jpeg" alt="Logo Petakita" class="logo" id="logo">
         <h1 class="titulo">Petakita Pet Shop</h1>
         <input type="text" id="nombreCliente" placeholder="Nombre del Local / Cliente">
         <input type="text" id="direccionCliente" placeholder="Dirección del Local / Cliente">
@@ -26,11 +27,20 @@
     </div>
 
     <div class="marcas-nav">
-        <button id="btn-purina" class="btn-marca" disabled onclick="window.mostrarProductos('Purina')">
-        <div id="spinner" class="custom-loader"></div> 
-        <span id="btn-text">Cargando Stock...</span>
-        </button>
-    </div>
+        <button id="btn-marcas" class="btn-marca" disabled onclick="window.mostrarProductos('Purina')">Purina</button>
+
+        <button id="btn-marcas" class="btn-marca" onclick="window.mostrarProductos('Advance')">Advance</button>
+
+        <button id="btn-marcas" class="btn-marca" onclick="window.mostrarProductos('Piedras Sanitarias')">Piedras Sanitarias</button>
+
+        <button id="btn-marcas" class="btn-marca" onclick="window.mostrarProductos('Profesional Vet')">Profesional Vet</button>
+
+        <button id="btn-marcas" class="btn-marca" onclick="window.mostrarProductos('Varios')">Varios</button>
+
+        <button id="btn-marcas" class="btn-marca" onclick="window.mostrarProductos('Gandum')">Gandum</button>
+        
+    </div> 
+
 
     <div>
         <button onclick="cerrarLista()" id="btn-cerrar">Cerrar lista</button>
