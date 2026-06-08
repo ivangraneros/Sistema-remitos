@@ -206,29 +206,40 @@ window.generarPDF = function() {
 
     for (const nombre in window.pedidoActual) {
         const item = window.pedidoActual[nombre];
-        const subtotal = item.cantidad * item.precio;
+        const cantidadComprada = item.cantidad;
+        const precioUnitario = item.precio;
+        const subtotal = cantidadComprada * precioUnitario;
+
         totalFinal += subtotal;
         
+        let textoCantidad = cantidadComprada.toString();
+
+        if (cantidadComprada >= 10) {
+            const unidadesGratis = Math.floor(cantidadComprada / 10);
+        
+            textoCantidad += ` + ${unidadesGratis}`;
+        }
+
         datosTabla.push([
-            item.cantidad, 
+            textoCantidad, 
             nombre.toUpperCase(),
-            `$${item.precio.toLocaleString()}`,
+            `$${precioUnitario.toLocaleString()}`,
             `$${subtotal.toLocaleString()}`
         ]);
     }
 
     const filasMinimas = 22;
     while (datosTabla.length < filasMinimas) {
-        datosTabla.push(["", "", ""]); 
+        datosTabla.push(["", "", "", ""]); 
     }
 
 // --- ENCABEZADO ESTILO REMITO ---
     doc.setFont("helvetica", "bold");
     doc.setFontSize(22);
     if (imgLogo) {
-        const imgWidth = 50;
+        const imgWidth = 65;
         const imgHeight = (imgLogo.naturalHeight / imgLogo.naturalWidth) * imgWidth;
-        doc.addImage(imgLogo, 'PNG', 25, 5, imgWidth, imgHeight);
+        doc.addImage(imgLogo, 'PNG', 15, -5, imgWidth, imgHeight);
     } 
     doc.setFontSize(9);
     doc.text("DOCUMENTO NO VALIDO COMO FACTURA", 140, 20); 
