@@ -16,6 +16,7 @@ html, body {
     margin: 0 auto 20px auto;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: white;
 }
 
 .marcas-nav {
@@ -186,4 +187,40 @@ input[type="number"]:focus {
 #btn-cerrar:hover {
     background-color: #ccc;
     transform: translateY(-4px);
+}
+
+/* input agregrar manual */
+.agregar-manual-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 30px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.agregar-manual-container input {
+    width: 50%;
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.agregar-manual-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.agregar-manual-container button {
+    background-color: #07B599;
+    color: black;
+    border: solid 2px black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgb(42, 39, 39);
 }

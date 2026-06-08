@@ -19,7 +19,7 @@
 <body>
 
     <div class="container">
-        <img src="./src/media/logo-petakita.jpeg" alt="Logo Petakita" class="logo" id="logo">
+        <img src="./src/media/logo-petakita.png" alt="Logo Petakita" class="logo" id="logo">
         <h1 class="titulo">Petakita Pet Shop</h1>
         <input type="text" id="nombreCliente" placeholder="Nombre del Local / Cliente">
         <input type="text" id="direccionCliente" placeholder="Dirección del Local / Cliente">
@@ -41,13 +41,20 @@
         
     </div> 
 
-
     <div>
         <button onclick="cerrarLista()" id="btn-cerrar">Cerrar lista</button>
     </div>
 
     <div id="lista-productos"></div>
-    
+
+        <div class="agregar-manual-container">
+        <h3>Agregar Producto Manual</h3>
+        <input type="text" id="manual-nombre" placeholder="Nombre del producto">
+        <input type="number" id="manual-precio" placeholder="Precio unitario ($)">
+        <input type="number" id="manual-cantidad" placeholder="Cant." value="1">
+        <button onclick="agregarProductoManual()">Agregar al Remito</button>
+    </div>
+
         <aside class="carrito-container">
             <h3>🛒 Resumen de Pedido</h3>
             <div id="resumen-pedido">El carrito está vacío</div>

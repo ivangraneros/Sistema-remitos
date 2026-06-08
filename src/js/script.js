@@ -113,21 +113,80 @@ function dibujarResumen() {
     let total = 0;
 
     for (const item in window.pedidoActual) {
-        const subtotal = window.pedidoActual[item].cantidad * window.pedidoActual[item].precio;
-        html += `<div style="font-size:12px;">• ${item} x ${window.pedidoActual[item].cantidad}</div>`;
-        total += subtotal;
+        const producto = window.pedidoActual[item];
+        const cantidadTotal = producto.cantidad;
+        const precioUnitario = producto.precio;
+
+        const subTotal = cantidadTotal * precioUnitario;
+
+        let promo = "";
+
+        if ( cantidadTotal >= 10) {
+            const unidadesGratis = Math.floor(cantidadTotal / 10);
+            const totalConPromo = cantidadTotal + unidadesGratis;
+            promo = ` (incluye ${unidadesGratis} gratis)`;
+        }
+
+        const botonEliminar = `<button onclick="eliminarDelRemito('${item}')" style="background: none; border: none; color: #dc3545; font-weight: bold; cursor: pointer; margin-right: 8px; font-size: 14px;" title="Eliminar producto">&times;</button>`;
+
+        html += `<div style="font-size:14px; display: flex; align-items: center; margin-bottom: 4px;">${botonEliminar} •${cantidadTotal}u - ${item.toUpperCase()} ${promo}</div>`;
+
+        total += subTotal;
     }
     
     res.innerHTML = html || "Carrito vacío";
-    totalTxt.innerText = `$${total}`;
+    totalTxt.innerText = `$${total.toLocaleString()}`;
 }
 
+window.eliminarDelRemito = function(nombre) {
 
+    if(window.pedidoActual && window.pedidoActual[nombre]) {
+        delete window.pedidoActual[nombre];
+
+        dibujarResumen();
+    }
+
+
+}
 window.cerrarLista = function() {
     const div = document.getElementById('lista-productos');
     if (div) div.innerHTML = "";
 }
 
+
+window.agregarProductoManual = function() {
+    
+    const nombreInput = document.getElementById('manual-nombre');
+    const precioInput = document.getElementById('manual-precio');
+    const cantidadInput = document.getElementById('manual-cantidad');
+
+    const nombre = nombreInput.value.trim();
+    const precio = parseFloat(precioInput.value);
+    const cantidad = parseInt(cantidadInput.value);
+
+    if (!nombre || isNaN(precio) || isNaN(cantidad) || precio <= 0 || cantidad <= 0) {
+        alert("Por favor, ingresa un nombre válido, precio mayor a 0 y cantidad mayor a 0.");
+        return;
+    }
+    
+    const productoManual = {
+        id: `manual-${Date.now()}`,
+        nombre,
+        precio,
+        cantidad,
+    };
+
+    if (!window.pedidoActual) window.pedidoActual = {};
+
+    window.pedidoActual[nombre] = { precio, cantidad };
+
+
+    nombreInput.value = "";
+    precioInput.value = "";
+    cantidadInput.value = "1";
+
+    dibujarResumen();
+}
 
 window.generarPDF = function() {
     const inputNombre = document.getElementById('nombreCliente');
@@ -167,16 +226,16 @@ window.generarPDF = function() {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(22);
     if (imgLogo) {
-        const imgWidth = 30;
+        const imgWidth = 50;
         const imgHeight = (imgLogo.naturalHeight / imgLogo.naturalWidth) * imgWidth;
-        doc.addImage(imgLogo, 'JPEG', 15, 10, imgWidth, imgHeight);
+        doc.addImage(imgLogo, 'PNG', 25, 5, imgWidth, imgHeight);
     } 
     doc.setFontSize(9);
     doc.text("DOCUMENTO NO VALIDO COMO FACTURA", 140, 20); 
     
 
     doc.setFontSize(10);
-    doc.text("DIA / MES / AÑO", 140, 30);
+    doc.text("MES / DIA / AÑO", 140, 30);
     doc.text(`${new Date().toLocaleDateString()}`, 140, 35);
 
     // --- DATOS DEL CLIENTE ---
