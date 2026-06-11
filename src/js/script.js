@@ -116,12 +116,13 @@ function dibujarResumen() {
         const producto = window.pedidoActual[item];
         const cantidadTotal = producto.cantidad;
         const precioUnitario = producto.precio;
+        const esPromo = producto.aplicaPromo !== false;
 
         const subTotal = cantidadTotal * precioUnitario;
 
         let promo = "";
 
-        if ( cantidadTotal >= 10) {
+        if (esPromo && cantidadTotal >= 10) {
             const unidadesGratis = Math.floor(cantidadTotal / 10);
             const totalConPromo = cantidadTotal + unidadesGratis;
             promo = ` (incluye ${unidadesGratis} gratis)`;
@@ -159,13 +160,14 @@ window.agregarProductoManual = function() {
     const nombreInput = document.getElementById('manual-nombre');
     const precioInput = document.getElementById('manual-precio');
     const cantidadInput = document.getElementById('manual-cantidad');
+    const promoCheckBox = document.getElementById("manual-promo");
 
     const nombre = nombreInput.value.trim();
     const precio = parseFloat(precioInput.value);
     const cantidad = parseInt(cantidadInput.value);
+    const aplicaPromo = promoCheckBox ? promoCheckBox.checked : false;
 
-    if (!nombre || isNaN(precio) || isNaN(cantidad) || precio <= 0 || cantidad <= 0) {
-        alert("Por favor, ingresa un nombre válido, precio mayor a 0 y cantidad mayor a 0.");
+    if (!nombre || isNaN(precio) || isNaN(cantidad) || precio < 0 || cantidad <= 0) {
         return;
     }
     
@@ -174,16 +176,18 @@ window.agregarProductoManual = function() {
         nombre,
         precio,
         cantidad,
+        aplicaPromo: aplicaPromo
     };
 
     if (!window.pedidoActual) window.pedidoActual = {};
 
-    window.pedidoActual[nombre] = { precio, cantidad };
+    window.pedidoActual[nombre] = { precio, cantidad, aplicaPromo };
 
 
     nombreInput.value = "";
     precioInput.value = "";
     cantidadInput.value = "1";
+    if (promoCheckBox) promoCheckBox.checked = true;
 
     dibujarResumen();
 }
@@ -209,12 +213,13 @@ window.generarPDF = function() {
         const cantidadComprada = item.cantidad;
         const precioUnitario = item.precio;
         const subtotal = cantidadComprada * precioUnitario;
+        const esPromo = item.aplicaPromo !== false;
 
         totalFinal += subtotal;
         
         let textoCantidad = cantidadComprada.toString();
 
-        if (cantidadComprada >= 10) {
+        if (esPromo && cantidadComprada >= 10) {
             const unidadesGratis = Math.floor(cantidadComprada / 10);
         
             textoCantidad += ` + ${unidadesGratis}`;
