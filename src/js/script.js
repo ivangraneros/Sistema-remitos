@@ -1,4 +1,4 @@
-import "./cargador.js";
+//import "./cargador.js";
 import { db } from "../config/firebase-config.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
