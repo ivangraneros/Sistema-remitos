@@ -78,19 +78,30 @@ window.ejecutarBusqueda = function() {
     if (!window.seccionActual) return;
 
     const buscador = document.getElementById('input-buscador');
+    if (!buscador) return; // Protección por si el input no existe
+
     const fraseBuscador = buscador.value.toLowerCase().trim();
 
-    const palabras = fraseBuscador.split("");
+    // Corregido: split(" ") para separar por palabras, no por letras
+    const palabras = fraseBuscador.split(" ").filter(p => p !== "" ); 
 
-    const resultados = window.productosDB.filter(p => {
+    // Aseguramos que window.productosDB sea un array válido
+    const listaProductos = window.productosDB || [];
+
+    const resultados = listaProductos.filter(p => {
+        // Protección por si el producto es nulo
+        if (!p) return false;
+
         const coincideSeccion = p.seccion && p.seccion.toLowerCase() === window.seccionActual.toLowerCase();
 
-        const nombreProducto = p.nombre.toLowerCase();
+        // PROTECCIÓN CLAVE: Si p.nombre no existe, usa "" para que no explote
+        const nombreProducto = String(p.nombre || "").toLowerCase();
+        
         const coincideNombre = palabras.every(palabra => nombreProducto.includes(palabra));
+        
         return coincideSeccion && coincideNombre;
     });
 
-    
     renderizarLista(resultados);
 }
 
